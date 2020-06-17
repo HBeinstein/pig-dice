@@ -59,8 +59,10 @@ $(document).ready(function() {
       // hide buttons
     }
     else {
-    $("#player-one-dice-roll").text(0);
-    $("#player-one-round-score").text(0);
+    playerOne.diceRoll = 0;
+    playerOne.roundScore = 0;
+    $("#player-one-dice-roll").text(playerOne.diceRoll);
+    $("#player-one-round-score").text(playerOne.roundScore);
     $("#player-one-total-score").text(playerOne.totalScore)
     $("#player-two-text").text("");
     endTurn();
