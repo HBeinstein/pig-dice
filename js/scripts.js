@@ -15,7 +15,7 @@ Player.prototype.rollDice = function() {
   this.diceRoll = userRoll;
   if (userRoll === 1) {
     this.roundScore = 0;
-    endTurnP1();
+    endTurn();
   }
   else {
     this.roundScore += this.diceRoll
@@ -34,6 +34,7 @@ const endTurn = function() {
 // User Interface Logic
 $(document).ready(function() {
   let playerOne = new Player("Hannah", 0, 0, 0);
+  let playerTwo = new Player("Jeff", 0, 0, 0);
 
   $("#player-one-roll").click(function() {
     if ($("#player-one-roll").hasClass("activePlayer") === true) {
@@ -42,7 +43,8 @@ $(document).ready(function() {
       $("#player-one-round-score").text(playerOne.roundScore);
     }
     else {
-      alert("It is not your turn!")
+      $("#player-one-text").text("It is not your turn!");
+      $("#player-two-text").text("");
     }
   })
   $("#player-one-hold").click(function() {
@@ -51,5 +53,26 @@ $(document).ready(function() {
     $("#player-one-dice-roll").text(0);
     $("#player-one-round-score").text(0);
     $("#player-one-total-score").text(playerOne.totalScore)
+    $("#player-two-text").text("");
+  })
+
+  $("#player-two-roll").click(function() {
+    if ($("#player-two-roll").hasClass("activePlayer") === true) {
+      playerTwo.rollDice();
+      $("#player-two-dice-roll").text(playerTwo.diceRoll);
+      $("#player-two-round-score").text(playerTwo.roundScore);
+    }
+    else {
+      $("#player-two-text").text("It is not your turn!");
+      $("#player-one-text").text("");
+    }
+  })
+  $("#player-two-hold").click(function() {
+    playerTwo.hold();
+    endTurn();
+    $("#player-two-dice-roll").text(0);
+    $("#player-two-round-score").text(0);
+    $("#player-two-total-score").text(playerTwo.totalScore)
+    $("#player-one-text").text("");
   })
 })
