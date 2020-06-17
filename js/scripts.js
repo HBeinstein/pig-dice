@@ -31,6 +31,11 @@ const endTurn = function() {
   document.getElementById("player-two-roll").classList.toggle("activePlayer");
 }
 
+const winner = function(player) {
+  if (player.totalScore >= 100) {
+  }
+}
+
 // User Interface Logic
 $(document).ready(function() {
   let playerOne = new Player("Hannah", 0, 0, 0);
@@ -49,11 +54,17 @@ $(document).ready(function() {
   })
   $("#player-one-hold").click(function() {
     playerOne.hold();
-    endTurn();
+    if (playerOne.totalScore >= 100) {
+      $("#winner-message").text(playerOne.playerName + " wins!");
+      // hide buttons
+    }
+    else {
     $("#player-one-dice-roll").text(0);
     $("#player-one-round-score").text(0);
     $("#player-one-total-score").text(playerOne.totalScore)
     $("#player-two-text").text("");
+    endTurn();
+    }
   })
 
   $("#player-two-roll").click(function() {
@@ -69,10 +80,16 @@ $(document).ready(function() {
   })
   $("#player-two-hold").click(function() {
     playerTwo.hold();
-    endTurn();
+    if (playerTwo.totalScore >= 100) {
+      $("#winner-message").text(playerTwo.playerName + " wins!");
+      // hide buttons
+    }
+    else {
     $("#player-two-dice-roll").text(0);
     $("#player-two-round-score").text(0);
     $("#player-two-total-score").text(playerTwo.totalScore)
     $("#player-one-text").text("");
+    endTurn();
+    }
   })
 })
