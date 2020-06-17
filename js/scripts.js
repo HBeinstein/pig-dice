@@ -14,18 +14,15 @@ Player.prototype.rollDice = function() {
   let userRoll = (Math.floor(Math.random()*6+1));
   this.currentScore = userRoll;
   this.roundScore += this.currentScore
-  // this.currentScore.push(userRoll);
 }
-
-
 
 
 // User Interface Logic
 $(document).ready(function() {
   let playerOne = new Player("Hannah", 0, 0, 0);
-  // playerOne.rollDice();
+
+  playerOne.rollDice();
 
   console.log(playerOne);
   console.log(playerOne.currentScore);
-  
 })
