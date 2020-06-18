@@ -14,77 +14,237 @@ Player.prototype.rollDice = function() {
   let userRoll = (Math.floor(Math.random()*6+1));
   this.diceRoll = userRoll;
   if (userRoll === 1) {
+    document.getElementById("d1").style.display="block";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="none";
     this.roundScore = 0;
     endTurn();
   }
+  else if (userRoll === 2) {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="block";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="none";
+    this.roundScore += this.diceRoll
+  }
+  else if (userRoll === 3) {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="block";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="none";
+    this.roundScore += this.diceRoll
+  }
+  else if (userRoll === 4) {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="block";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="none";
+    this.roundScore += this.diceRoll
+  }
+  else if (userRoll === 5) {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="block";
+    document.getElementById("d6").style.display="none";
+    this.roundScore += this.diceRoll
+  }
   else {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="block";
+    this.roundScore += this.diceRoll
+  }
+}
+
+Player.prototype.rollDiceVsCpu = function() {
+  let userRoll = (Math.floor(Math.random()*6+1));
+  this.diceRoll = userRoll;
+  if (userRoll === 1) {
+    document.getElementById("d1").style.display="block";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="none";
+    this.roundScore = 0;
+    endTurnVsCpu();
+  }
+  else if (userRoll === 2) {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="block";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="none";
+    this.roundScore += this.diceRoll
+  }
+  else if (userRoll === 3) {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="block";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="none";
+    this.roundScore += this.diceRoll
+  }
+  else if (userRoll === 4) {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="block";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="none";
+    this.roundScore += this.diceRoll
+  }
+  else if (userRoll === 5) {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="block";
+    document.getElementById("d6").style.display="none";
+    this.roundScore += this.diceRoll
+  }
+  else {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="block";
     this.roundScore += this.diceRoll
   }
 }
 
 Player.prototype.hold = function() {
   this.totalScore += this.roundScore;
+  this.diceRoll = 0;
+  this.roundScore = 0;
 }
+
+// Computer Player code
+Player.prototype.cpuTurn = function() {
+  while (this.roundScore <= 5) {
+    // let cpuRoll = (Math.floor(Math.random()*6+1));
+    // this.diceRoll = cpuRoll;
+    this.diceRoll = (Math.floor(Math.random()*6+1));
+    if (this.diceRoll === 1) {
+      this.roundScore = 0;
+      break;
+    }
+    else {
+      this.roundScore += this.diceRoll
+    }  
+  }
+  this.cpuHold();
+}
+
+// Player.prototype.cpuDice = function() {
+
+// }
+
+Player.prototype.cpuHold = function() {
+  this.totalScore += this.roundScore;
+  // this.diceRoll = 0;
+  // this.roundScore = 0;
+  document.getElementById("p1-buttons").classList.toggle("inactive-player");
+}
+
+const endTurnVsCpu = function() {
+  document.getElementById("p1-buttons").classList.toggle("inactive-player");
+}
+// End Computer Player code
 
 const endTurn = function() {
-  document.getElementById("player-one-roll").classList.toggle("activePlayer");
-  document.getElementById("player-two-roll").classList.toggle("activePlayer");
+  document.getElementById("p1-buttons").classList.toggle("inactive-player");
+  document.getElementById("p2-buttons").classList.toggle("inactive-player");
 }
 
-const winner = function(player) {
-  if (player.totalScore >= 100) {
-  }
-}
+// const winner = function(player) {
+//   if (player.totalScore >= 100) {
+//   }
+// }
 
 // User Interface Logic
 $(document).ready(function() {
-  let playerOne = new Player("Hannah", 0, 0, 0);
-  let playerTwo = new Player("Jeff", 0, 0, 0);
-
+  let playerOne = new Player("", 0, 0, 0);
+  let playerTwo = new Player("", 0, 0, 0);
+  let computer = new Player("Snowball", 0, 0, 0);
+  $("form#player-one-name-input").submit(function(event){
+    event.preventDefault();
+    let p1NameInput = $("input#p1-name").val();
+    playerOne.playerName = p1NameInput;
+    $("#player-one-name-display").text(playerOne.playerName);
+    $("#p1-name-form").toggle();
+    $("#p1-seat").toggle();
+  });
   $("#player-one-roll").click(function() {
-    if ($("#player-one-roll").hasClass("activePlayer") === true) {
-      playerOne.rollDice();
-      $("#player-one-dice-roll").text(playerOne.diceRoll);
-      $("#player-one-round-score").text(playerOne.roundScore);
-    }
-    else {
-      $("#player-one-text").text("It is not your turn!");
-      $("#player-two-text").text("");
-    }
-  })
+    playerOne.rollDice();
+    $("#player-one-dice-roll").text(playerOne.diceRoll);
+    $("#player-one-round-score").text(playerOne.roundScore);
+  });
   $("#player-one-hold").click(function() {
     playerOne.hold();
     if (playerOne.totalScore >= 100) {
       $("#winner-message").text(playerOne.playerName + " wins!");
-      // hide buttons
     }
     else {
-    playerOne.diceRoll = 0;
-    playerOne.roundScore = 0;
     $("#player-one-dice-roll").text(playerOne.diceRoll);
     $("#player-one-round-score").text(playerOne.roundScore);
-    $("#player-one-total-score").text(playerOne.totalScore)
+    $("#player-one-total-score").text(playerOne.totalScore);
     $("#player-two-text").text("");
     endTurn();
     }
+  });
+  $("#cpu-roll").click(function() {
+    playerOne.rollDiceVsCpu();
+    $("#player-one-dice-roll").text(playerOne.diceRoll);
+    $("#player-one-round-score").text(playerOne.roundScore);
+  });
+  $("#cpu-hold").click(function() {
+    computer.cpuTurn();
+    $("#player-two-dice-roll").text(computer.diceRoll);
+    $("#player-two-round-score").text(computer.roundScore);
+    $("#player-two-total-score").text(computer.totalScore);
   })
-
+  $("form#player-two-name-input").submit(function(event){
+    event.preventDefault();
+    let p2NameInput = $("input#p2-name").val();
+    playerTwo.playerName = p2NameInput;
+    $("#player-two-name-display").text(playerTwo.playerName);
+    $("#p2-name-form").toggle();
+    $("#p2-seat").toggle();
+  });
+  $("#play-vs-cpu").click(function() {
+    $("#player-two-name-display").text("Snowball");
+    $("#p2-name-form").toggle();
+    $("#p2-seat").toggle();
+    $("#p1-vs-cpu").toggle();
+    $("#p1-buttons").toggle();
+  });
   $("#player-two-roll").click(function() {
-    if ($("#player-two-roll").hasClass("activePlayer") === true) {
-      playerTwo.rollDice();
-      $("#player-two-dice-roll").text(playerTwo.diceRoll);
-      $("#player-two-round-score").text(playerTwo.roundScore);
-    }
-    else {
-      $("#player-two-text").text("It is not your turn!");
-      $("#player-one-text").text("");
-    }
+    playerTwo.rollDice();
+    $("#player-two-dice-roll").text(playerTwo.diceRoll);
+    $("#player-two-round-score").text(playerTwo.roundScore);
   })
   $("#player-two-hold").click(function() {
     playerTwo.hold();
     if (playerTwo.totalScore >= 100) {
       $("#winner-message").text(playerTwo.playerName + " wins!");
-      // hide buttons
     }
     else {
     $("#player-two-dice-roll").text(0);
