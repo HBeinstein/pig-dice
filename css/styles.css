@@ -1,39 +1,43 @@
+@font-face {
+  font-family: "Casino Regular";
+  src: url("../fonts/casino-font/CasinoRegular-Wyz4G.ttf");
+}
+@font-face {
+  font-family: "Casino Flat Italic";
+  src: url("../fonts/casino-font/CasinoFlatItalic-X340P.ttf");
+}
+body {
+  background-color: #076644;
+}
+.jumbotron {
+  background-color: #C88A64;
+  text-align: center;
+  color: white;
+  font-family: "Casino Regular";
+}
 .inactive-player {
   display: none;
 }
-#p1-panel, #p2-panel {
+#p1-panel {
+  min-height: 40rem;
+  border: solid 2px red;
+  padding: 8rem;
+  background-image: url("../img/table-reverse.jpg");
+  background-size: cover;
+  font-family: "Casino Flat Italic";
+  text-align: right;
+}
+#p2-panel {
+  min-height: 40rem;
+  border: solid 2px red;
+  padding: 8rem;
+  background-image: url("../img/table.jpg");
+  background-size: cover;
+  font-family: "Casino Flat Italic";
+}
+.panel label, p, h3 {
+  color: white;
+}
+#p1-seat, #p2-seat {
   display: none;
 }
-/* #player-one-output {
-  display: none;
-}
-#p1-buttons {
-  display: none;
-}
-#player-two-output {
-  display: none;
-}
-#p2-buttons {
-  display: none; 
-} */
-/* .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 4fr;
-  height: 100vh;
-}
-
-.playerOneContainer {
-  grid-column: 1 / span 1;
-  grid-row: 2 / span 1;
-}
-
-.diceContainer {
-  grid-column: 2 / span 1;
-  grid-row: 2 / span 1;
-}
-
-.playerTwoContainer {
-  grid-column: 3 / span 1;
-  grid-row: 2 / span 1;
-} */

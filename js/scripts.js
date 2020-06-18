@@ -48,7 +48,7 @@ $(document).ready(function() {
     playerOne.playerName = p1NameInput;
     $("#player-one-name-display").text(playerOne.playerName);
     $("#p1-name-form").toggle();
-    $("#p1-panel").toggle();
+    $("#p1-seat").toggle();
   });
 
   $("#player-one-roll").click(function() {
@@ -75,7 +75,7 @@ $(document).ready(function() {
     playerTwo.playerName = p2NameInput;
     $("#player-two-name-display").text(playerTwo.playerName);
     $("#p2-name-form").toggle();
-    $("#p2-panel").toggle();
+    $("#p2-seat").toggle();
   });
   $("#player-two-roll").click(function() {
     playerTwo.rollDice();
