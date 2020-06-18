@@ -8,14 +8,17 @@
 }
 body {
   background-color: #076644;
+  font-family: "Casino Regular";
+  text-align: center;
 }
 .jumbotron {
   background-color: #C88A64;
-  text-align: center;
   color: white;
-  font-family: "Casino Regular";
 }
 .inactive-player {
+  display: none;
+}
+#p1-vs-cpu {
   display: none;
 }
 #p1-panel {
@@ -34,10 +37,14 @@ body {
   background-image: url("../img/table.jpg");
   background-size: cover;
   font-family: "Casino Flat Italic";
+  text-align: left;
 }
 .panel label, p, h3 {
   color: white;
 }
 #p1-seat, #p2-seat {
   display: none;
+}
+.winner-output {
+  color: white
 }
