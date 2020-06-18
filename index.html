@@ -13,15 +13,15 @@
       <div class="row">
         <div class="col-md-4">
           <div class="playerOneContainer">
-            <div>
-              <button class="btn activePlayer" id="player-one-roll">Roll Dice!</button>
+            <div id="p1-buttons">
+              <button class="btn" id="player-one-roll">Roll Dice!</button>
               <button class="btn" id="player-one-hold">Hold</button>
             </div>
             <div id="player-one-output">
               <span id="player-one-dice-roll">0</span>
               <span id="player-one-round-score">0</span>
               <span id="player-one-total-score">0</span>
-              <span id="player-one-text">test</span>
+              <span id="player-one-text"></span>
             </div>
           </div>
         </div>
@@ -36,7 +36,7 @@
 
         <div class="col-md-4">
           <div class="playerTwoContainer">
-            <div>
+            <div id="p2-buttons" class="inactive-player">
               <button class="btn" id="player-two-roll">Roll Dice!</button>
               <button class="btn" id="player-two-hold">Hold</button>
             </div>

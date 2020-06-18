@@ -24,11 +24,13 @@ Player.prototype.rollDice = function() {
 
 Player.prototype.hold = function() {
   this.totalScore += this.roundScore;
+  this.diceRoll = 0;
+  this.roundScore = 0;
 }
 
 const endTurn = function() {
-  document.getElementById("player-one-roll").classList.toggle("activePlayer");
-  document.getElementById("player-two-roll").classList.toggle("activePlayer");
+  document.getElementById("p1-buttons").classList.toggle("inactive-player");
+  document.getElementById("p2-buttons").classList.toggle("inactive-player");
 }
 
 const winner = function(player) {
@@ -42,15 +44,18 @@ $(document).ready(function() {
   let playerTwo = new Player("Jeff", 0, 0, 0);
 
   $("#player-one-roll").click(function() {
-    if ($("#player-one-roll").hasClass("activePlayer") === true) {
-      playerOne.rollDice();
-      $("#player-one-dice-roll").text(playerOne.diceRoll);
-      $("#player-one-round-score").text(playerOne.roundScore);
-    }
-    else {
-      $("#player-one-text").text("It is not your turn!");
-      $("#player-two-text").text("");
-    }
+    playerOne.rollDice();
+    $("#player-one-dice-roll").text(playerOne.diceRoll);
+    $("#player-one-round-score").text(playerOne.roundScore);
+    // if ($("#player-one-roll").hasClass("activePlayer") === true) {
+    //   playerOne.rollDice();
+    //   $("#player-one-dice-roll").text(playerOne.diceRoll);
+    //   $("#player-one-round-score").text(playerOne.roundScore);
+    // }
+    // else {
+    //   $("#player-one-text").text("It is not your turn!");
+    //   $("#player-two-text").text("");
+    // }
   })
   $("#player-one-hold").click(function() {
     playerOne.hold();
@@ -59,8 +64,8 @@ $(document).ready(function() {
       // hide buttons
     }
     else {
-    playerOne.diceRoll = 0;
-    playerOne.roundScore = 0;
+    // playerOne.diceRoll = 0;
+    // playerOne.roundScore = 0;
     $("#player-one-dice-roll").text(playerOne.diceRoll);
     $("#player-one-round-score").text(playerOne.roundScore);
     $("#player-one-total-score").text(playerOne.totalScore)
@@ -70,15 +75,18 @@ $(document).ready(function() {
   })
 
   $("#player-two-roll").click(function() {
-    if ($("#player-two-roll").hasClass("activePlayer") === true) {
-      playerTwo.rollDice();
-      $("#player-two-dice-roll").text(playerTwo.diceRoll);
-      $("#player-two-round-score").text(playerTwo.roundScore);
-    }
-    else {
-      $("#player-two-text").text("It is not your turn!");
-      $("#player-one-text").text("");
-    }
+    playerTwo.rollDice();
+    $("#player-two-dice-roll").text(playerTwo.diceRoll);
+    $("#player-two-round-score").text(playerTwo.roundScore);
+    // if ($("#player-two-roll").hasClass("activePlayer") === true) {
+    //   playerTwo.rollDice();
+    //   $("#player-two-dice-roll").text(playerTwo.diceRoll);
+    //   $("#player-two-round-score").text(playerTwo.roundScore);
+    // }
+    // else {
+    //   $("#player-two-text").text("It is not your turn!");
+    //   $("#player-one-text").text("");
+    // }
   })
   $("#player-two-hold").click(function() {
     playerTwo.hold();
