@@ -48,3 +48,9 @@ body {
 .winner-output {
   color: white
 }
+#d1, #d2, #d3, #d4, #d5, #d6 {
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}

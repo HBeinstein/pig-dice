@@ -14,10 +14,58 @@ Player.prototype.rollDice = function() {
   let userRoll = (Math.floor(Math.random()*6+1));
   this.diceRoll = userRoll;
   if (userRoll === 1) {
+    document.getElementById("d1").style.display="block";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="none";
     this.roundScore = 0;
     endTurn();
   }
+  else if (userRoll === 2) {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="block";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="none";
+    this.roundScore += this.diceRoll
+  }
+  else if (userRoll === 3) {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="block";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="none";
+    this.roundScore += this.diceRoll
+  }
+  else if (userRoll === 4) {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="block";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="none";
+    this.roundScore += this.diceRoll
+  }
+  else if (userRoll === 5) {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="block";
+    document.getElementById("d6").style.display="none";
+    this.roundScore += this.diceRoll
+  }
   else {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="block";
     this.roundScore += this.diceRoll
   }
 }
@@ -30,7 +78,7 @@ Player.prototype.hold = function() {
 
 // Computer Player code
 Player.prototype.cpuTurn = function() {
-  while (this.roundScore < 5) {
+  while (this.roundScore < 10) {
     let cpuRoll = (Math.floor(Math.random()*6+1));
     this.diceRoll = cpuRoll;
     if (cpuRoll === 1) {
@@ -38,7 +86,7 @@ Player.prototype.cpuTurn = function() {
       break;
     }
     else {
-     this.roundScore += this.diceRoll
+      this.roundScore += this.diceRoll
     }  
   }
   this.cpuHold();
