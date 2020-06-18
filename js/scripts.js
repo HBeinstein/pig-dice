@@ -70,6 +70,66 @@ Player.prototype.rollDice = function() {
   }
 }
 
+Player.prototype.rollDiceVsCpu = function() {
+  let userRoll = (Math.floor(Math.random()*6+1));
+  this.diceRoll = userRoll;
+  if (userRoll === 1) {
+    document.getElementById("d1").style.display="block";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="none";
+    this.roundScore = 0;
+    endTurnVsCpu();
+  }
+  else if (userRoll === 2) {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="block";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="none";
+    this.roundScore += this.diceRoll
+  }
+  else if (userRoll === 3) {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="block";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="none";
+    this.roundScore += this.diceRoll
+  }
+  else if (userRoll === 4) {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="block";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="none";
+    this.roundScore += this.diceRoll
+  }
+  else if (userRoll === 5) {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="block";
+    document.getElementById("d6").style.display="none";
+    this.roundScore += this.diceRoll
+  }
+  else {
+    document.getElementById("d1").style.display="none";
+    document.getElementById("d2").style.display="none";
+    document.getElementById("d3").style.display="none";
+    document.getElementById("d4").style.display="none";
+    document.getElementById("d5").style.display="none";
+    document.getElementById("d6").style.display="block";
+    this.roundScore += this.diceRoll
+  }
+}
+
 Player.prototype.hold = function() {
   this.totalScore += this.roundScore;
   this.diceRoll = 0;
@@ -78,10 +138,11 @@ Player.prototype.hold = function() {
 
 // Computer Player code
 Player.prototype.cpuTurn = function() {
-  while (this.roundScore < 10) {
-    let cpuRoll = (Math.floor(Math.random()*6+1));
-    this.diceRoll = cpuRoll;
-    if (cpuRoll === 1) {
+  while (this.roundScore <= 5) {
+    // let cpuRoll = (Math.floor(Math.random()*6+1));
+    // this.diceRoll = cpuRoll;
+    this.diceRoll = (Math.floor(Math.random()*6+1));
+    if (this.diceRoll === 1) {
       this.roundScore = 0;
       break;
     }
@@ -102,6 +163,10 @@ Player.prototype.cpuHold = function() {
   // this.roundScore = 0;
   document.getElementById("p1-buttons").classList.toggle("inactive-player");
 }
+
+const endTurnVsCpu = function() {
+  document.getElementById("p1-buttons").classList.toggle("inactive-player");
+}
 // End Computer Player code
 
 const endTurn = function() {
@@ -109,10 +174,10 @@ const endTurn = function() {
   document.getElementById("p2-buttons").classList.toggle("inactive-player");
 }
 
-const winner = function(player) {
-  if (player.totalScore >= 100) {
-  }
-}
+// const winner = function(player) {
+//   if (player.totalScore >= 100) {
+//   }
+// }
 
 // User Interface Logic
 $(document).ready(function() {
@@ -146,8 +211,10 @@ $(document).ready(function() {
     }
   });
   $("#cpu-roll").click(function() {
-    // Identical to #player-one-roll, but instead of showing P2 buttons, only hide P1 buttons
-  })
+    playerOne.rollDiceVsCpu();
+    $("#player-one-dice-roll").text(playerOne.diceRoll);
+    $("#player-one-round-score").text(playerOne.roundScore);
+  });
   $("#cpu-hold").click(function() {
     computer.cpuTurn();
     $("#player-two-dice-roll").text(computer.diceRoll);
