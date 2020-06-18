@@ -40,32 +40,28 @@ const winner = function(player) {
 
 // User Interface Logic
 $(document).ready(function() {
-  let playerOne = new Player("Hannah", 0, 0, 0);
-  let playerTwo = new Player("Jeff", 0, 0, 0);
+  let playerOne = new Player("", 0, 0, 0);
+  let playerTwo = new Player("", 0, 0, 0);
+  $("form#player-one-name-input").submit(function(event){
+    event.preventDefault();
+    let p1NameInput = $("input#p1-name").val();
+    playerOne.playerName = p1NameInput;
+    $("#player-one-name-display").text(playerOne.playerName);
+    $("#p1-name-form").toggle();
+    $("#p1-panel").toggle();
+  });
 
   $("#player-one-roll").click(function() {
     playerOne.rollDice();
     $("#player-one-dice-roll").text(playerOne.diceRoll);
     $("#player-one-round-score").text(playerOne.roundScore);
-    // if ($("#player-one-roll").hasClass("activePlayer") === true) {
-    //   playerOne.rollDice();
-    //   $("#player-one-dice-roll").text(playerOne.diceRoll);
-    //   $("#player-one-round-score").text(playerOne.roundScore);
-    // }
-    // else {
-    //   $("#player-one-text").text("It is not your turn!");
-    //   $("#player-two-text").text("");
-    // }
   })
   $("#player-one-hold").click(function() {
     playerOne.hold();
     if (playerOne.totalScore >= 100) {
       $("#winner-message").text(playerOne.playerName + " wins!");
-      // hide buttons
     }
     else {
-    // playerOne.diceRoll = 0;
-    // playerOne.roundScore = 0;
     $("#player-one-dice-roll").text(playerOne.diceRoll);
     $("#player-one-round-score").text(playerOne.roundScore);
     $("#player-one-total-score").text(playerOne.totalScore)
@@ -73,26 +69,23 @@ $(document).ready(function() {
     endTurn();
     }
   })
-
+  $("form#player-two-name-input").submit(function(event){
+    event.preventDefault();
+    let p2NameInput = $("input#p2-name").val();
+    playerTwo.playerName = p2NameInput;
+    $("#player-two-name-display").text(playerTwo.playerName);
+    $("#p2-name-form").toggle();
+    $("#p2-panel").toggle();
+  });
   $("#player-two-roll").click(function() {
     playerTwo.rollDice();
     $("#player-two-dice-roll").text(playerTwo.diceRoll);
     $("#player-two-round-score").text(playerTwo.roundScore);
-    // if ($("#player-two-roll").hasClass("activePlayer") === true) {
-    //   playerTwo.rollDice();
-    //   $("#player-two-dice-roll").text(playerTwo.diceRoll);
-    //   $("#player-two-round-score").text(playerTwo.roundScore);
-    // }
-    // else {
-    //   $("#player-two-text").text("It is not your turn!");
-    //   $("#player-one-text").text("");
-    // }
   })
   $("#player-two-hold").click(function() {
     playerTwo.hold();
     if (playerTwo.totalScore >= 100) {
       $("#winner-message").text(playerTwo.playerName + " wins!");
-      // hide buttons
     }
     else {
     $("#player-two-dice-roll").text(0);

@@ -1,6 +1,21 @@
 .inactive-player {
   display: none;
 }
+#p1-panel, #p2-panel {
+  display: none;
+}
+/* #player-one-output {
+  display: none;
+}
+#p1-buttons {
+  display: none;
+}
+#player-two-output {
+  display: none;
+}
+#p2-buttons {
+  display: none; 
+} */
 /* .container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
